@@ -60,13 +60,6 @@ public class GCYRGTAddon implements IGTAddon {
                 .registerOre(() -> GCYRBlocks.MERCURY_ROCK.orElse(Blocks.STONE).defaultBlockState(), null, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).requiresCorrectToolForDrops().strength(3.0F, 3.0F), GCYR.id("block/mercury_rock"));
     }
 
-    @SubscribeEvent
-    public void modifyMaterial(PostMaterialEvent event) {
-        var prop = new FluidProperty();
-        prop.getStorage().enqueueRegistration(FluidStorageKeys.PLASMA, new FluidBuilder());
-        GTMaterials.Hydrogen.setProperty(PropertyKey.FLUID, prop);
-    }
-
     @Override
     public void registerElements() {
         IGTAddon.super.registerElements();

@@ -45,7 +45,7 @@ import static argent_matter.gcyr.api.registries.GCYRRegistries.REGISTRATE;
 import static argent_matter.gcyr.common.data.GCYRBlocks.*;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
-import static com.gregtechceu.gtceu.common.data.GCyMBlocks.CASING_ATOMIC;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_ATOMIC;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.POWER_TRANSFORMER;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
@@ -165,7 +165,7 @@ public class GCYRMachines {
 
     public static final MultiblockMachineDefinition DYSON_SYSTEM_CONTROLLER = REGISTRATE.multiblock("dyson_system_controller", DysonSystemControllerMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .appearanceBlock(() -> CASING_ATOMIC.get()) // You MUST do it like this, so that the GTBlocks/GCyMBlocks class isn't loaded too early. Because that causes a crash.
+            .appearanceBlock(() -> CASING_ATOMIC.get()) // You MUST do it like this, so that the GTBlocks/GCYMBlocks class isn't loaded too early. Because that causes a crash.
             .recipeType(GCYRRecipeTypes.DYSON_ENERGY_RECIPES)
             .tier(GTValues.UV)
             .pattern(definition -> FactoryBlockPattern.start()
