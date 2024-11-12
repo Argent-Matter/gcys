@@ -10,9 +10,9 @@ public class SimpleFuelTankProperties implements IFuelTankProperties {
     @Getter
     private final int tier;
     @Getter
-    private final long fuelStorage;
+    private final int fuelStorage;
 
-    public SimpleFuelTankProperties(String name, int tier, long fuelStorage) {
+    public SimpleFuelTankProperties(String name, int tier, int fuelStorage) {
         this.tier = tier;
         this.fuelStorage = fuelStorage;
         this.serializedName = name;

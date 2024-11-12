@@ -4,10 +4,6 @@ import argent_matter.gcyr.common.recipe.type.SmithingSpaceSuitRecipe;
 import argent_matter.gcyr.data.recipe.GCYRTags;
 import com.google.common.primitives.Ints;
 import com.lowdragmc.lowdraglib.misc.ItemStackTransfer;
-import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
-import com.lowdragmc.lowdraglib.side.fluid.FluidStack;
-import com.lowdragmc.lowdraglib.side.fluid.FluidTransferHelper;
-import com.lowdragmc.lowdraglib.side.fluid.IFluidTransfer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,6 +16,9 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidType;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +26,7 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SpaceSuitArmorItem extends ArmorItem {
-    public static final long CAPACITY = 16 * FluidHelper.getBucket();
+    public static final long CAPACITY = 16 * FluidType.BUCKET_VOLUME;
 
     public SpaceSuitArmorItem(ArmorItem.Type type, Properties properties) {
         super(GCYRArmorMaterials.SPACE, type, properties);
@@ -59,10 +58,7 @@ public class SpaceSuitArmorItem extends ArmorItem {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag isAdvanced) {
         tooltip.add(Component.translatable("tooltip.gcyr.spacesuit"));
         if (stack.is(Tags.Items.ARMORS_CHESTPLATES)) {
-            IFluidTransfer transfer = FluidTransferHelper.getFluidTransfer(new ItemStackTransfer(stack), 0);
-            if (transfer != null) {
-                tooltip.add(Component.translatable("tooltip.gcyr.spacesuit.stored", transfer.getFluidInTank(0).getAmount(), transfer.getTankCapacity(0)));
-            }
+            FluidUtil.getFluidHandler(stack).ifPresent(h -> tooltip.add(Component.translatable("tooltip.gcyr.spacesuit.stored", h.getFluidInTank(0).getAmount(), h.getTankCapacity(0))));
         }
     }
 
@@ -95,11 +91,7 @@ public class SpaceSuitArmorItem extends ArmorItem {
 
     public static long oxygenAmount(ItemStack stack) {
         if (stack.getItem() instanceof SpaceSuitArmorItem || stack.hasTag() && stack.getTag().getBoolean(SmithingSpaceSuitRecipe.SPACE_SUIT_ARMOR_KEY)) {
-            var storage = new ItemStackTransfer(stack);
-            var fluid = FluidTransferHelper.getFluidTransfer(storage, 0);
-            if (fluid != null) {
-                return fluid.getFluidInTank(0).getAmount();
-            }
+            return FluidUtil.getFluidHandler(stack).map(h -> h.getFluidInTank(0).getAmount()).orElse(0);
         }
         return 0;
     }
@@ -111,10 +103,7 @@ public class SpaceSuitArmorItem extends ArmorItem {
 
     public static long oxygenMax(ItemStack stack) {
         if (stack.getItem() instanceof SpaceSuitArmorItem || stack.hasTag() && stack.getTag().getBoolean(SmithingSpaceSuitRecipe.SPACE_SUIT_ARMOR_KEY)) {
-            var fluid = FluidTransferHelper.getFluidTransfer(new ItemStackTransfer(stack), 0);
-            if (fluid != null) {
-                return fluid.getTankCapacity(0);
-            }
+            return FluidUtil.getFluidHandler(stack).map(h -> h.getTankCapacity(0)).orElse(0);
         }
         return 0;
     }
@@ -123,8 +112,8 @@ public class SpaceSuitArmorItem extends ArmorItem {
         ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
         if (chest.getItem() instanceof SpaceSuitArmorItem || chest.hasTag() && chest.getTag().getBoolean(SmithingSpaceSuitRecipe.SPACE_SUIT_ARMOR_KEY)) {
             var storage = new ItemStackTransfer(chest);
-            var fluid = FluidTransferHelper.getFluidTransfer(storage, 0);
-            fluid.drain(FluidStack.create(fluid.getFluidInTank(0), amount), false, true);
+            FluidUtil.getFluidHandler(storage.getStackInSlot(0))
+                    .ifPresent(h -> h.drain(amount, IFluidHandler.FluidAction.EXECUTE));
         }
 
     }

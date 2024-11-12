@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_PLATE;
@@ -27,6 +28,8 @@ public class GCYRMaterials {
         IronMagnetic.addFlags(GENERATE_FOIL);
         TitaniumTungstenCarbide.addFlags(GENERATE_ROD);
         Titanium.setProperty(PropertyKey.ORE, new OreProperty());
+
+        GTMaterials.Hydrogen.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA, new FluidBuilder());
     }
 
     //region first degree mats

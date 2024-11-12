@@ -2,9 +2,9 @@ package argent_matter.gcyr.common.block;
 
 import argent_matter.gcyr.api.block.IFuelTankProperties;
 import argent_matter.gcyr.api.block.IRocketPart;
-import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import lombok.Getter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraftforge.fluids.FluidType;
 
 public class FuelTankBlock extends RotatedPillarBlock implements IRocketPart {
 
@@ -22,9 +22,9 @@ public class FuelTankBlock extends RotatedPillarBlock implements IRocketPart {
     }
 
     public enum FuelTankProperties implements IFuelTankProperties {
-        BASIC("basic", 1, 5 * FluidHelper.getBucket()),
-        ADVANCED("advanced", 2, 7 * FluidHelper.getBucket()),
-        ELITE("elite", 3, 12 * FluidHelper.getBucket()),
+        BASIC("basic", 1, 5 * FluidType.BUCKET_VOLUME),
+        ADVANCED("advanced", 2, 7 * FluidType.BUCKET_VOLUME),
+        ELITE("elite", 3, 12 * FluidType.BUCKET_VOLUME),
         ;
 
         @Getter
@@ -32,9 +32,9 @@ public class FuelTankBlock extends RotatedPillarBlock implements IRocketPart {
         @Getter
         private final int tier;
         @Getter
-        private final long fuelStorage;
+        private final int fuelStorage;
 
-        FuelTankProperties(String serializedName, int tier, long fuelStorage) {
+        FuelTankProperties(String serializedName, int tier, int fuelStorage) {
             this.tier = tier;
             this.fuelStorage = fuelStorage;
             this.serializedName = serializedName;

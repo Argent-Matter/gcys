@@ -14,7 +14,7 @@ public class RocketMotorBlockBuilder extends BlockBuilder {
     @Setter
     public transient int tier = 0;
     @Setter
-    public transient long fuelStorage = 0;
+    public transient int fuelStorage = 0;
     @Setter
     public transient String typeId = "";
 

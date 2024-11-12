@@ -16,5 +16,5 @@ public interface IFuelTankProperties extends StringRepresentable {
     /**
      * @return how much fuel this tank can store at maximum.
      */
-    long getFuelStorage();
+    int getFuelStorage();
 }

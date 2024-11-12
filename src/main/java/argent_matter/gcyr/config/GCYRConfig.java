@@ -1,11 +1,11 @@
 package argent_matter.gcyr.config;
 
 import argent_matter.gcyr.GCYR;
-import com.lowdragmc.lowdraglib.side.fluid.FluidHelper;
 import dev.toma.configuration.Configuration;
 import dev.toma.configuration.config.Config;
 import dev.toma.configuration.config.Configurable;
 import dev.toma.configuration.config.format.ConfigFormats;
+import net.minecraftforge.fluids.FluidType;
 
 @Config(id = GCYR.MOD_ID)
 public class GCYRConfig {
@@ -71,16 +71,16 @@ public class GCYRConfig {
     public static class RocketConfigs {
         @Configurable
         @Configurable.Comment({"How much fuel is required to travel to a moon or back?", "Default: 8 buckets."})
-        public long moonFuelAmount = 8 * FluidHelper.getBucket();
+        public int moonFuelAmount = 8 * FluidType.BUCKET_VOLUME;
         @Configurable
         @Configurable.Comment({"How much fuel is required to travel to a planet in the same solar system?", "Default: 14 buckets."})
-        public long solarSystemFuelAmount = 14 * FluidHelper.getBucket();
+        public int solarSystemFuelAmount = 14 * FluidType.BUCKET_VOLUME;
         @Configurable
         @Configurable.Comment({"How much fuel is required to travel to a planet in the same galaxy?", "Default: 26 buckets."})
-        public long galaxyFuelAmount = 26 * FluidHelper.getBucket();
+        public int galaxyFuelAmount = 26 * FluidType.BUCKET_VOLUME;
         @Configurable
         @Configurable.Comment({"How much fuel is required to travel to a planet anywhere?", "Default: 48 buckets."})
-        public long anywhereFuelAmount = 48 * FluidHelper.getBucket();
+        public int anywhereFuelAmount = 48 * FluidType.BUCKET_VOLUME;
         @Configurable
         @Configurable.Comment({"Do rockets explode if landing is executed improperly?", "Default: true."})
         public boolean doCrashLandingExplosion = true;

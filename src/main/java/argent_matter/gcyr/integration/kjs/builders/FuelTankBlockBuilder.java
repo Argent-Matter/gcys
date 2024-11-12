@@ -14,7 +14,7 @@ public class FuelTankBlockBuilder extends BlockBuilder {
     @Setter
     public transient int tier;
     @Setter
-    public transient long fuelStorage;
+    public transient int fuelStorage;
     @Setter
     public transient String typeId = "";
 
