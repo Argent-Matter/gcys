@@ -1,11 +1,9 @@
 ### ADDITIONS:
 
 ### FIXES:
-- Fixed rocket synchronization
-- Fixed rockets forming incorrectly again
 
 ### CHANGES:
-- updated to GT 1.4.4
+- updated to GT 1.5.0
 
 ## WIP Documentation!:
 
