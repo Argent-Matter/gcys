@@ -10,7 +10,7 @@ import com.gregtechceu.gtceu.api.pattern.BlockPattern;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
 import com.gregtechceu.gtceu.api.pattern.TraceabilityPredicate;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
+import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -105,7 +105,7 @@ public class PlatformMultiblockMachine extends MultiblockControllerMachine imple
      * @return if a block is a valid floor block at pos moved in direction
      */
     public boolean isBlockTowerEnd(@Nonnull Level world, @Nonnull BlockPos.MutableBlockPos pos, @Nonnull Direction direction) {
-        return world.getBlockState(pos.move(Direction.UP, 1)).is(GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()) && !world.getBlockState(pos.relative(Direction.UP, 1)).is(GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get());
+        return world.getBlockState(pos.move(Direction.UP, 1)).is(MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()) && !world.getBlockState(pos.relative(Direction.UP, 1)).is(MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get());
     }
 
     @Override
@@ -167,7 +167,7 @@ public class PlatformMultiblockMachine extends MultiblockControllerMachine imple
         front[0] = emptyBuilder.toString();
         front[1] = controllerBuilder.toString();
 
-        TraceabilityPredicate towerPredicate = blocks(GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get());
+        TraceabilityPredicate towerPredicate = blocks(MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get());
         TraceabilityPredicate basePredicate = Predicates.autoAbilities(true, false, false)
                 .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(3));
 

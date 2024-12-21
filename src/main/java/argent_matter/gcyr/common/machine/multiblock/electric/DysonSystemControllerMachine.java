@@ -8,8 +8,6 @@ import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams;
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult;
 import com.gregtechceu.gtceu.common.data.GTDamageTypes;
 import com.lowdragmc.lowdraglib.gui.util.ClickData;
 import net.minecraft.ChatFormatting;
@@ -62,13 +60,13 @@ public class DysonSystemControllerMachine extends WorkableElectricMultiblockMach
     }
 
     @Override
-    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe, @NotNull OCParams params, @NotNull OCResult result) {
+    protected @Nullable GTRecipe getRealRecipe(GTRecipe recipe) {
         if (this.getLevel().dimensionType().hasCeiling()) return null;
         if (recipe.data.contains("gcyr:repair_dyson_sphere")) {
             IDysonSystem system = GCYRCapabilityHelper.getDysonSystem((ServerLevel) this.getLevel());
             if (system != null && system.isDysonSphereActive() && (!system.activeDysonSphere().isNeedsMaintenance() || !this.getPos().equals(system.activeDysonSphere().getControllerPos()))) return null;
         }
-        return super.getRealRecipe(recipe, params, result);
+        return super.getRealRecipe(recipe);
     }
 
     @Override

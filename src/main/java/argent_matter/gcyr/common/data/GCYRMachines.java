@@ -47,6 +47,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_ATOMIC;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterialBlocks.MATERIAL_BLOCKS;
 import static com.gregtechceu.gtceu.common.data.GTMachines.POWER_TRANSFORMER;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toEnglishName;
 
@@ -83,7 +84,7 @@ public class GCYRMachines {
                     .aisle("     ", "  S  ", "     ", "     ", "     ", "     ")
                     .where('S', controller(blocks(definition.getBlock())))
                     .where('B', blocks(LAUNCH_PAD.get()))
-                    .where('K', blocks(GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()))
+                    .where('K', blocks(MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()))
                     .where(' ', any())
                     .build())
             .shapeInfos(definition -> {
@@ -96,7 +97,7 @@ public class GCYRMachines {
                         .aisle("     ", "  K  ", "  K  ", "  K  ", "  K  ", "  K  ")
                         .where('S', definition, Direction.NORTH)
                         .where(' ', Blocks.AIR)
-                        .where('K', GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get())
+                        .where('K', MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get())
                         .where('B', LAUNCH_PAD);
                 shapeInfo.add(builder
                         .where('E', Blocks.AIR)
@@ -128,7 +129,7 @@ public class GCYRMachines {
                     .aisle("       ", "   S   ", "       ", "       ", "       ", "       ")
                     .where('S', controller(blocks(definition.getBlock())))
                     .where('B', blocks(LAUNCH_PAD.get()))
-                    .where('K', blocks(GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()))
+                    .where('K', blocks(MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get()))
                     .where(' ', any())
                     .build())
             .shapeInfos(definition -> {
@@ -145,7 +146,7 @@ public class GCYRMachines {
                         .aisle("       ", "   K   ", "   K   ", "   K   ", "   K   ", "   K   ")
                         .where('S', definition, Direction.NORTH)
                         .where(' ', Blocks.AIR)
-                        .where('K', GTBlocks.MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get())
+                        .where('K', MATERIAL_BLOCKS.get(TagPrefix.frameGt, GTMaterials.StainlessSteel).get())
                         .where('B', LAUNCH_PAD);
                 shapeInfo.add(builder
                         .where('D', Blocks.AIR)
@@ -264,7 +265,6 @@ public class GCYRMachines {
                 .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
                 .workableTieredHullRenderer(GTCEu.id("block/machines/" + name))
                 .tooltips(workableTiered(tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType, tankScalingFunction.apply(tier), true))
-                .compassNode(name)
                 .register(), tiers);
     }
 
@@ -291,7 +291,7 @@ public class GCYRMachines {
     }
 
     public static Component explosion() {
-        if (ConfigHolder.INSTANCE.machines.doTerrainExplosion)
+        if (ConfigHolder.INSTANCE.machines.shouldWeatherOrTerrainExplosion)
             return Component.translatable("gtceu.universal.tooltip.terrain_resist");
         return null;
     }
