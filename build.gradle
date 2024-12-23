@@ -55,7 +55,7 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        dataGen{
+        dataGen {
             mod(mod_id)
         }
     }
@@ -173,7 +173,7 @@ dependencies {
     modCompileOnly(forge.theoneprobe) { transitive = false }
 
     // KJS
-    modImplementation forge.kubejs.forge
+    modCompileOnly forge.kubejs.forge
 
     // Configuration
     modImplementation(forge.configuration)
@@ -220,12 +220,12 @@ tasks.register("run + RenderDoc", Exec.class) {
 processResources {
     // set up properties for filling into metadata
     var properties = [
-            "version": version,
-            "mod_id": project.mod_id,
-            "forge_version": forge.versions.forgeShortVersion.get().split("\\.")[0], // only specify major version of forge
+            "version"          : version,
+            "mod_id"           : project.mod_id,
+            "forge_version"    : forge.versions.forgeShortVersion.get().split("\\.")[0], // only specify major version of forge
             "minecraft_version": libs.versions.minecraft.get(),
-            "gtceu_version": forge.versions.gtceu.get(),
-            "mod_name": mod_name,
+            "gtceu_version"    : forge.versions.gtceu.get(),
+            "mod_name"         : mod_name,
     ]
     inputs.properties(properties)
 

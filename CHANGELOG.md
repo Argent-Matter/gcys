@@ -3,7 +3,8 @@
 ### FIXES:
 
 ### CHANGES:
-- updated to GT 1.5.0
+- updated to GT 1.6.1
+- Removed uses of Bromine
 
 ## WIP Documentation!:
 
