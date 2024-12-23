@@ -74,52 +74,32 @@ public class PolymerRecipes {
          */
 
         // Kevlar
-        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("cobalt_bromide"))
-                .inputItems(dust, Cobalt, 1)
-                .inputFluids(Bromine.getFluid(1000))
-                .inputFluids(AceticAcid.getFluid(1000))
-                .outputFluids(CobaltBromide.getFluid(1000))
-                .duration(60).EUt(VA[HV]).save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("manganese_bromide"))
-                .inputItems(dust, Manganese, 1)
-                .inputFluids(Bromine.getFluid(1000))
-                .inputFluids(AceticAcid.getFluid(1000))
-                .outputFluids(ManganeseBromide.getFluid(1000))
-                .duration(60).EUt(VA[HV]).save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("manganese_acetate"))
-                .inputItems(dust, Manganese, 1)
-                .inputFluids(AceticAcid.getFluid(1000))
-                .outputFluids(ManganeseAcetate.getFluid(1000))
-                .duration(60).EUt(VA[HV]).save(provider);
-        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("hydrobromic_acid"))
-                .notConsumable(dust, Platinum)
-                .inputFluids(Hydrogen.getFluid(1000))
-                .inputFluids(Bromine.getFluid(1000))
-                .inputFluids(Water.getFluid(1000))
-                .outputFluids(HydrobromicAcid.getFluid(1000))
-                .duration(60).EUt(VA[HV]).save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("aluminium_trichloride"))
+                .inputItems(dust, Aluminium, 2)
+                .inputFluids(Chlorine.getFluid(6000))
+                .outputItems(dust, AluminiumTrichloride, 2)
+                .duration(20).EUt(VA[LV]).save(provider);
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder(GCYR.id("co_mn_br_catalyst"))
-                .inputFluids(CobaltBromide.getFluid(1000))
-                .inputFluids(ManganeseBromide.getFluid(1000))
-                .inputFluids(ManganeseAcetate.getFluid(1000))
-                .inputFluids(HydrobromicAcid.getFluid(1000))
-                .outputFluids(CoMnBrCatalyst.getFluid(4000))
-                .duration(100).EUt(VA[HV]).save(provider);
+        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("methylbenzaldehyde"))
+                .notConsumable(dust, AluminiumTrichloride, 1)
+                .inputFluids(Toluene.getFluid(250))
+                .inputFluids(CarbonMonoxide.getFluid(1000))
+                .inputFluids(HydrochloricAcid.getFluid(1000))
+                .outputFluids(Methylbenzaldehyde.getFluid(1000))
+                .duration(200).EUt(VA[HV]).save(provider);
+
+        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("therephthalic_acid"))
+                .inputFluids(Methylbenzaldehyde.getFluid(1000))
+                .inputFluids(Oxygen.getFluid(3000))
+                .outputFluids(TerephthalicAcid.getFluid(1000))
+                .outputFluids(Hydrogen.getFluid(2000))
+                .duration(60).EUt(VHA[HV]).save(provider);
 
         CHEMICAL_RECIPES.recipeBuilder(GCYR.id("bis_trichloromethyl_benzene"))
                 .inputFluids(ParaXylene.getFluid(1000))
                 .inputFluids(Chlorine.getFluid(12000))
                 .outputFluids(BisTrichloromethylBenzene.getFluid(1000))
                 .outputFluids(HydrochloricAcid.getFluid(6000))
-                .duration(60).EUt(VHA[HV]).save(provider);
-
-        CHEMICAL_RECIPES.recipeBuilder(GCYR.id("therephthalic_acid"))
-                .inputFluids(ParaXylene.getFluid(1000))
-                .inputFluids(Oxygen.getFluid(2000))
-                .inputFluids(CoMnBrCatalyst.getFluid(1000))
-                .outputFluids(TerephthalicAcid.getFluid(1000))
-                .outputFluids(Water.getFluid(1000))
                 .duration(60).EUt(VHA[HV]).save(provider);
 
         CHEMICAL_RECIPES.recipeBuilder(GCYR.id("terephthaloyl_chloride"))

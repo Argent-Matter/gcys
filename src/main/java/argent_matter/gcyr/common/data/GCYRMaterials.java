@@ -68,13 +68,6 @@ public class GCYRMaterials {
             .components(Calcium, 1, Fluorine, 2)
             .buildAndRegister();
 
-    public static Material CobaltBromide = new Material.Builder(GCYR.id("cobalt_bromide"))
-            .fluid()
-            .colorAverage()
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .components(Cobalt, 1, Bromine, 1, AceticAcid, 1)
-            .buildAndRegister();
-
     public static Material IronOxide = new Material.Builder(GCYR.id("iron_oxide"))
             .dust()
             .color(0xBD3514)
@@ -86,29 +79,17 @@ public class GCYRMaterials {
             .dust()
             .color(0xAB2C0E)
             .buildAndRegister();
-    public static Material ManganeseBromide = new Material.Builder(GCYR.id("manganese_bromide"))
+
+    public static Material Methylbenzaldehyde = new Material.Builder(GCYR.id("methylbenzaldehyde"))
             .fluid()
             .colorAverage()
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .components(Manganese, 1, Bromine, 1, AceticAcid, 1)
-            .buildAndRegister();
-    public static Material ManganeseAcetate = new Material.Builder(GCYR.id("manganese_acetate"))
-            .fluid()
-            .colorAverage()
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .components(Manganese, 1, AceticAcid, 1)
-            .buildAndRegister();
-    public static Material HydrobromicAcid = new Material.Builder(GCYR.id("hydrobromic_acid"))
-            .fluid()
-            .colorAverage()
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .components(Hydrogen, 1, Bromine, 1, Water, 1)
+            .components(Carbon, 8, Hydrogen, 8, Oxygen, 1)
             .buildAndRegister();
 
-    public static Material CoMnBrCatalyst = new Material.Builder(GCYR.id("co_mn_br_catalyst"))
-            .fluid()
+    public static Material AluminiumTrichloride = new Material.Builder(GCYR.id("aluminium_trichloride"))
+            .dust()
             .colorAverage()
-            .components(CobaltBromide, 1, ManganeseBromide, 1, ManganeseAcetate, 1, HydrobromicAcid, 1)
+            .components(Aluminium, 1, Chlorine, 3)
             .buildAndRegister();
 
     //endregion
@@ -158,6 +139,7 @@ public class GCYRMaterials {
     public static final Material OxydianilineSludge = new Material.Builder(GCYR.id("oxydianiline_sludge"))
             .fluid(FluidStorageKeys.LIQUID, new FluidBuilder().temperature(493))
             .color(0xD9CCBF)
+            .flags(DISABLE_DECOMPOSITION)
             .components(Oxydianiline, 1, Dimethylformamide, 1)
             .buildAndRegister();
 

@@ -15,7 +15,6 @@ public class LangHandler extends com.gregtechceu.gtceu.data.lang.LangHandler {
 
         // materials
         replace(provider, GCYRMaterials.Bisalloy400.getUnlocalizedName(), "Bisalloy-400");
-        replace(provider, GCYRMaterials.CoMnBrCatalyst.getUnlocalizedName(), "Co-Mn-Br Catalyst");
         replace(provider, GCYRMaterials.ParaPhenylenediamine.getUnlocalizedName(), "Para-Phenylenediamine");
         replace(provider, GCYRMaterials.ParaAramid.getUnlocalizedName(), "Para-Aramid");
         replace(provider, GCYRMaterials.ParaXylene.getUnlocalizedName(), "Para-Xylene");
