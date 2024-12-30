@@ -76,4 +76,28 @@ public class GCYRModels {
         };
     }
 
+    public static NonNullBiConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> grassBlockModel(String name,
+                                                                                                                ResourceLocation bottomTexture) {
+        return grassBlockModel(name,
+                GCYR.id("block/" + name + "_side"),
+                bottomTexture,
+                GCYR.id("block/" + name + "_top"));
+    }
+
+    public static NonNullBiConsumer<DataGenContext<Block, Block>, RegistrateBlockstateProvider> grassBlockModel(String name,
+                                                                                                                ResourceLocation sideTexture,
+                                                                                                                ResourceLocation bottomTexture,
+                                                                                                                ResourceLocation topTexture) {
+        return (ctx, prov) -> {
+            ModelFile base = prov.models().cubeBottomTop(name, sideTexture, bottomTexture, topTexture);
+            ConfiguredModel modelY0 = new ConfiguredModel(base, 0, 0, false);
+            ConfiguredModel modelY90 = new ConfiguredModel(base, 0, 90, false);
+            ConfiguredModel modelY180 = new ConfiguredModel(base, 0, 180, false);
+            ConfiguredModel modelY270 = new ConfiguredModel(base, 0, 270, false);
+            prov.getVariantBuilder(ctx.getEntry())
+                    .partialState()
+                    .setModels(modelY0, modelY90, modelY180, modelY270);
+        };
+    }
+
 }
